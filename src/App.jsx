@@ -1,6 +1,8 @@
 
+import { Suspense } from 'react'
 import './App.css'
-import Country from './Countries'
+import Countries from './Countries'
+// import Country from './Country'
 
 const fetchCountries = async() =>{
   const res = await fetch('https://openapi.programming-hero.com/api/all')
@@ -9,14 +11,17 @@ const fetchCountries = async() =>{
   // return data
 }
 // console.log(fetchCountries())
-const countryPromise = fetchCountries()
+const countriesPromise = fetchCountries()
 // console.log(countryPromise)
 
 function App() {
 
   return (
     <>
-      <Country countryPromise={countryPromise}></Country>
+    <Suspense fallback={<h4>Countries are loading.....</h4>}>
+      <Countries countriesPromise={countriesPromise}></Countries>
+    </Suspense>
+      
     </>
   )
 }
