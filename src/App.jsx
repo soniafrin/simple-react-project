@@ -1,21 +1,22 @@
 
 import './App.css'
-import Country from './Country'
+import Country from './Countries'
 
 const fetchCountries = async() =>{
   const res = await fetch('https://openapi.programming-hero.com/api/all')
-  const data = res.json()
-  return data
+  // const data = res.json()
+  return res.json()
+  // return data
 }
-console.log(fetchCountries())
+// console.log(fetchCountries())
 const countryPromise = fetchCountries()
-console.log(countryPromise)
+// console.log(countryPromise)
 
 function App() {
 
   return (
     <>
-      <Country></Country>
+      <Country countryPromise={countryPromise}></Country>
     </>
   )
 }
